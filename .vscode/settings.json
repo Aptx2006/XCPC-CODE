@@ -1,0 +1,40 @@
+{
+    "editor.gotoLocation.alternativeDeclarationCommand": "editor.action.revealDefinition",
+    "editor.gotoLocation.alternativeDefinitionCommand": "editor.action.revealDefinition",
+    "editor.gotoLocation.alternativeTypeDefinitionCommand": "editor.action.revealDefinition",
+    "editor.selectionHighlight": false,
+    "files.autoSave": "onFocusChange",
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": "on"
+    },
+    "files.associations": {
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "random": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "rope": "cpp",
+        "slist": "cpp",
+        "format": "cpp",
+        "initializer_list": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "stacktrace": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled",
+    "cmake.sourceDirectory": "D:/CODE/XCPC/DS"
+}
