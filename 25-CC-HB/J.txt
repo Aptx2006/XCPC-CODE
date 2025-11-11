@@ -1,0 +1,11 @@
+wwwovvvv
+vvvvvvovvvv
+01234567891
+
+d1i:1 d1i:2 d1i:3 d1i:3 d1i:2 d1i:1 d1i:5 d1i:1 d1i:2 d1i:2 d1i:1 
+d2i:0 d2i:1 d2i:2 d2i:3 d2i:2 d2i:1 d2i:0 d2i:0 d2i:1 d2i:2 d2i:1 
+
+d1i:1 d1i:2 d1i:3 d1i:3 d1i:2 d1i:1 d1i:1 d1i:2 d1i:3 d1i:4 d1i:11 d1i:4 d1i:3 d1i:2 d1i:1 d1i:1 d1i:2 d1i:3 d1i:4 d1i:3 d1i:2 d1i:1 
+d2i:0 d2i:1 d2i:2 d2i:3 d2i:2 d2i:1 d2i:0 d2i:1 d2i:2 d2i:3 d2i:4 d2i:4 d2i:3 d2i:2 d2i:1 d2i:0 d2i:1 d2i:2 d2i:3 d2i:3 d2i:2 d2i:1 
+d1i:1 d1i:2 d1i:3 d1i:3 d1i:2 d1i:1 d1i:2 d1i:2 d1i:1 d1i:1 d1i:1 d1i:2 d1i:2 d1i:1 
+d2i:0 d2i:1 d2i:2 d2i:3 d2i:2 d2i:1 d2i:0 d2i:0 d2i:0 d2i:2 d2i:0 d2i:1 d2i:2 d2i:1 
