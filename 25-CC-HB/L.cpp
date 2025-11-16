@@ -13,21 +13,21 @@ void solve(){
         pos[y] = x;
     }
     for(int t=0;t<(1<<k);t++){
-        vector dp(105,vector<int>(105,1e9));
+        vector dp(105,vector<int>(105,1e9));//到达第i行第j列的步数
         for(int i=1;i<=n;i++) dp[i][0]=0;
         int cur = 0;
         for(int j=1;j<=m;j++){
-            int l=1,r=n;
+            int low=1,high=n;
             if(pos[j]){
-                if((t>>cur)&1) l=pos[j]+1;
-                else r=pos[j]-1;
+                if((t>>cur)&1) low=pos[j]+1;
+                else high=pos[j]-1;
                 cur++;
             }
-            for(int i=l;i<=r;i++) 
+            for(int i=low;i<=high;i++) 
                 dp[i][j]=min(dp[i][j],dp[i][j-1]+1);
-            for(int i=l;i<=r;i++) 
+            for(int i=low;i<=high;i++) 
                 dp[i][j]=min(dp[i][j],dp[i-1][j]+1);
-            for(int i=r;i>=l;i--) 
+            for(int i=high;i>=low;i--) 
                 dp[i][j]=min(dp[i][j],dp[i+1][j]+1);
         }
         int mn=1e9;
