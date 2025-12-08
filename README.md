@@ -1,2 +1,0 @@
-# XCPC-CODE
-AHNU Team2 

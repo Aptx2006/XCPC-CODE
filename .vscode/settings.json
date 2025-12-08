@@ -33,7 +33,9 @@
         "regex": "cpp",
         "valarray": "cpp",
         "chrono": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "numbers": "cpp",
+        "iomanip": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "D:/CODE/XCPC/DS"
