@@ -35,7 +35,8 @@
         "chrono": "cpp",
         "functional": "cpp",
         "numbers": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "ostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "D:/CODE/XCPC/DS"
