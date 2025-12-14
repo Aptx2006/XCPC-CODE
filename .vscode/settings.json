@@ -36,7 +36,9 @@
         "functional": "cpp",
         "numbers": "cpp",
         "iomanip": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "D:/CODE/XCPC/DS"
