@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+//#pragma GCC optimize(2)
+/*i32 : -2e9~2e9
+i64: -9e18~9e18
+u64: 0~1.8e19*/
+using i64 = long long;
+using u64 = unsigned long long;
+#define dbg(A) cout << #A << "==" << A << '\n';
+#define all(A) A.begin(), A.end()
+#define int long long
+
+const int MAXN = 1E5 + 5, MOD = 1E9 + 7, INF = 1E18;
+
+int l, r;
+int lb(int x){ return x & -x;}
+void solve() { 
+    cin >> l >> r;
+    int x = l ^ r, mxi = -1;
+    for(int i = 60; i >= 0; i--) if((x << i) & 1) {
+        mxi = i;
+        break;
+    }
+    int mask = ~((1ll << (60 - mxi + 1)) - 1);
+    int mid = r & mask;
+    int ans = min(lb(mid - l), lb(r - mid + 1));
+    if(mid - l == r - mid + 1) ans ++;
+    cout << ans - 1 << '\n';
+}
+
+signed main() {
+    ios::sync_with_stdio(false), cin.tie(0);
+    int times = 1; cin >> times;
+    while (times--) solve();
+    return 0;
+}
