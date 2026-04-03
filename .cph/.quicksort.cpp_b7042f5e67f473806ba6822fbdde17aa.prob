@@ -1,0 +1,1 @@
+{"name":"Local: quicksort","url":"d:\\CODE\\gitcode\\quicksort.cpp","tests":[{"id":1775096343261,"input":"3\n2 1 3","output":"1 2 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\quicksort.cpp","group":"local","local":true}
