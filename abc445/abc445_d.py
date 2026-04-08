@@ -1,13 +1,14 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 from collections import defaultdict, deque
-input = lambda: sys.stdin.readline()
 def main():
-	H, W, n = map(int, input().split())
+	H, W, n = II(), II(), II()
 	a = []
 	hmp = defaultdict(deque)
 	wmp = defaultdict(deque)
 	for i in range(n):
-		x, y = map(int, input().split())
+		x, y = II(), II()
 		a.append((x, y))
 		hmp[x].append((x, i))
 		wmp[y].append((y, i))

@@ -1,15 +1,16 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 sys.setrecursionlimit(100000)
-input = lambda: sys.stdin.readline().strip()
 def main():
-	n = int(input())
+	n = II()
 	dp = list([0] * 2 for _ in range(n + 5))
 	for i in range(n):
-		dp[i + 1][1] = int(input())
+		dp[i + 1][1] = II()
 	G = list([] for _ in range(n + 5))
 	son = [0] * (n + 5)
 	for i in range(n - 1):
-		u, v = map(int, input().split())
+		u, v = II(), II()
 		G[v].append(u)
 		son[u] = 1
 	def dfs(u):

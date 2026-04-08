@@ -1,10 +1,11 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n = int(input())
+	n = II()
 	a = []
 	for _ in range(n - 1):
-		b = list(map(int, input().split()))
+		b = [II() for _ in range(n)]
 		a.append(b)
 	f = 0
 	for i in range(n - 2):

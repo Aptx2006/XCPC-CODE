@@ -1,13 +1,14 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, m, h = map(int, input().split())
-	a = list(map(int, input().split()))
+	n, m, h = II(), II(), II()
+	a = [II() for _ in range(n)]
 	a = [0] + a
 	aa = list(x for x in a)
 	L = list()
 	for i in range(m):
-		b, c = map(int, input().split())
+		b, c = II(), II()
 		a[b] += c
 		L.append(b)
 		if a[b] > h:
@@ -16,6 +17,6 @@ def main():
 			L = list()
 	print(*a[1:])
 	
-T = int(input())
+T = II()
 for _ in range(T):
 	main()

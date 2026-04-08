@@ -9,12 +9,13 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, m = map(int, input().split())
+	n, m = II(), II()
 	ans = [0] * (m + 1)
 	for _ in range(n):
-		x, y = map(int, input().split())
+		x, y = II(), II()
 		ans[x] -= 1
 		ans[y] += 1
 	for _ in range(1, m + 1):

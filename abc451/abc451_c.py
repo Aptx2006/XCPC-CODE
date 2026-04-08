@@ -9,12 +9,13 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys, heapq, bisect
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	q = int(input())
+	q = II()
 	a = []
 	for _ in range(q):
-		op, x = map(int, input().split())
+		op, x = II(), II()
 		#print(a, p)
 		if op == 1:
 			heapq.heappush(a, x)

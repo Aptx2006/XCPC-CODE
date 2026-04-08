@@ -1,11 +1,12 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 import math
 from collections import defaultdict, deque
-input = lambda: sys.stdin.readline()
 MOD = 998244353
 def main():
-	n = int(input())
-	a = list(map(int, input().split()))
+	n = II()
+	a = [II() for _ in range(n)]
 	pre = [1] * (n + 1)
 	for i in range(1, n + 1):
 		x = pre[i - 1]
@@ -25,5 +26,5 @@ def main():
 		print(x, end = ' ')
 	print()
 	
-for _ in range(int(input())):
+for _ in range(II()):
 	main()

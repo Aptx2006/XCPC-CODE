@@ -7,9 +7,10 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	l, r, d, u = map(int, input().split())
+	l, r, d, u = II(), II(), II(), II()
 	def h(k):
 	  mnx = max(l, -k)
 	  mxx = min(r, k)

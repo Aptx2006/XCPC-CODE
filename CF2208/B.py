@@ -7,10 +7,11 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, k, p, m = map(int, input().split())
-	a = list(map(int , input().split()))
+	n, k, p, m = II(), II(), II(), II()
+	a = [II() for _ in range(n)]
 	x, y = a[p - 1], a[p - 1]
 	if k < p:
 		b = a[:p - 1]
@@ -28,5 +29,5 @@ def main():
 	else:
 		print(1 + (m - x) // y)
 	 
-for _ in range(int(input())):
+for _ in range(II()):
 	main()

@@ -1,7 +1,8 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, k = map(int, input().split())
+	n, k = II(), II()
 	global C
 	ln, ans = n.bit_length(), 0
 	if(ln > k):
@@ -17,5 +18,5 @@ for i in range(35):
 	C[i][0] = 1
 	for j in range(1, i + 1):
 		C[i][j] = C[i - 1][j] + C[i - 1][j - 1]
-for _ in range(int(input())):
+for _ in range(II()):
 	main()

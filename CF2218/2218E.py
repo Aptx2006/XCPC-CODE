@@ -1,6 +1,7 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 from array import array
-input = lambda: sys.stdin.readline().strip()
 
 def DT(nums):
     if len(nums) < 2:
@@ -67,9 +68,9 @@ def DT(nums):
 
 
 def solve():
-    n = int(input())
-    a = list(map(int, input().split()))
+    n = II()
+    a = [II() for _ in range(n)]
     print((DT(a)))
 
-for _ in range(int(input())):
+for _ in range(II()):
     solve()

@@ -1,7 +1,8 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n = int(input())
+	n = II()
 	a = []
 	for i in range(n, 0, -1):
 		a.append(i)

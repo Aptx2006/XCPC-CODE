@@ -1,8 +1,9 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, k = map(int, input().split())
-	a = list(map(int, input().split()))
+	n, k = II(), II()
+	a = [II() for _ in range(n)]
 	for i in range(n):
 		a[i] %= k
 	a.sort()

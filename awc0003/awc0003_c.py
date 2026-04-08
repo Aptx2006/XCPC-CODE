@@ -1,12 +1,13 @@
 import sys
-input = lambda: sys.stdin.readline()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, k = map(int, input().split())
+	n, k = II(), II()
 	a = [0]
 	b = [0]
 	c = [0]
 	for i in range(n):
-		x, y = map(int, input().split())
+		x, y = II(), II()
 		a.append(x), b.append(y)
 		c.append(x - y)
 	c.sort(reverse = True)

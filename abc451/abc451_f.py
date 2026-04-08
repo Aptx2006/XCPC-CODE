@@ -8,10 +8,12 @@
 # 
 # Powered by CP Editor (https://cpeditor.org)
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 input = sys.stdin.readline
 
 def main():
-    n, q = map(int, input().split())
+    n, q = II(), II()
 
     fa = list(range(n + 1))
     Gx = [0] * (n + 1)       
@@ -40,7 +42,7 @@ def main():
             res.append("-1")
             continue 
         
-        u, v = map(int, input().split())
+        u, v = II(), II()
         ru = find(u)
         rv = find(v)
 

@@ -1,8 +1,9 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 
 def solve():
-    x, y = map(int, input().split())
+    x, y = II(), II()
     sum = x + y
     if sum & 1:
         if y <= x:
@@ -32,5 +33,5 @@ def solve():
                 k += 1
 
 
-for _ in range(int(input())):
+for _ in range(II()):
     solve()

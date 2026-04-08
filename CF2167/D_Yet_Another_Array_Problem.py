@@ -1,9 +1,10 @@
 import sys,math
-input = lambda:sys.stdin.readline().strip()
-T = int(input())
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
+T = II()
 for _ in range(T):
-    n = int(input())
-    arr = list(map(int,input().split()))
+    n = II()
+    arr = [II() for _ in range(n)]
     ans = -1
     for x in range(2,100):
         for y in arr:
