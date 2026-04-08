@@ -7,13 +7,14 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 from collections import Counter
-input = lambda: sys.stdin.readline().strip()
 def main():
-	n = int(input())
+	n = II()
 	a = list([] for _ in range(n))
 	for _ in range(n):
-		a[_] = list(map(int, input().split()))
+		a[_] = [II() for _ in range(n)]
 	mp = Counter()
 	for v in a:
 		for x in v:
@@ -23,5 +24,5 @@ def main():
 	else:
 		print('NO')
 		
-for _ in range(int(input())):
+for _ in range(II()):
 	main()

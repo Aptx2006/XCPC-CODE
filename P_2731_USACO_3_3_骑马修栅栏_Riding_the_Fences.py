@@ -1,6 +1,7 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 sys.setrecursionlimit(10000)
-input = lambda: sys.stdin.readline().strip()
 
 def main():
     G = [[] for _ in range(505)]
@@ -8,9 +9,9 @@ def main():
     ans = [0] * 1080
     l = m = 0
 
-    n = int(input())
+    n = II()
     for _ in range(n):
-        x, y = map(int, input().split())
+        x, y = II(), II()
         G[x].append(y)
         G[y].append(x)
         m = max(m, x, y)

@@ -1,9 +1,10 @@
 import sys
-input = lambda: sys.stdin.readline()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-    n, m = map(int, input().split())
-    w = list(map(int, input().split()))
-    c = list(map(int, input().split()))
+    n, m = II(), II()
+    w = [II() for _ in range(n)]
+    c = [II() for _ in range(n)]
     
     w.sort(reverse=True)
     c.sort(reverse=True)

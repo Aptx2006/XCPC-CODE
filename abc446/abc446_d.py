@@ -1,10 +1,11 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 import math
 from collections import defaultdict, deque, Counter
-input = lambda: sys.stdin.readline()
 def main():
-	n = int(input())
-	a = list(map(int, input().split()))
+	n = II()
+	a = [II() for _ in range(n)]
 	dp = Counter()
 	ans = 0
 	for x in a:

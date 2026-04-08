@@ -1,8 +1,9 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n = int(input())
-	a = list(map(int, input().split()))
+	n = II()
+	a = [II() for _ in range(n)]
 	a.sort()
 	ans = cnt = 0
 	for i in range(1, n):
@@ -15,6 +16,6 @@ def main():
 			cnt = 0
 	print(max(ans, cnt + 1))
 	
-T = int(input())
+T = II()
 for _ in range(T):
 	main()

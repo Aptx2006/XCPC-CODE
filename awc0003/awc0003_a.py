@@ -1,10 +1,11 @@
 import sys
-input = lambda: sys.stdin.readline()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, k = map(int, input().split())
+	n, k = II(), II()
 	ans = 0
 	for i in range(n):
-		a, b = map(int, input().split())
+		a, b = II(), II()
 		if a * b >= k:
 			ans += 1
 			

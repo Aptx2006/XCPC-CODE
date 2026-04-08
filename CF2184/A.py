@@ -1,8 +1,9 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
-T = int(input())
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
+T = II()
 for _ in range(T):
-	n = int(input())
+	n = II()
 	if n == 2:
 		print(2)
 	elif n == 3:

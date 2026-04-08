@@ -7,11 +7,12 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	h, w, q = map(int, input().split())
+	h, w, q = II(), II(), II()
 	for _ in range(q):
-		op, x = map(int, input().split()) 
+		op, x = II(), II()
 		if op == 1:
 			h -= x
 			print(w * x)

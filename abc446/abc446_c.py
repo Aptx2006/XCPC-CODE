@@ -1,11 +1,12 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 import math
 from collections import defaultdict, deque, Counter
-input = lambda: sys.stdin.readline()
 def main():
-	n, m = map(int, input().split())
-	a = list(map(int, input().split()))
-	b = list(map(int, input().split()))
+	n, m = II(), II()
+	a = [II() for _ in range(n)]
+	b = [II() for _ in range(n)]
 	Q = deque()
 	ans = 0
 	for day in range(1, n+1):
@@ -33,5 +34,5 @@ def main():
 	
 	print(ans)
 	  
-for _ in range(int(input())):
+for _ in range(II()):
 	main()

@@ -1,12 +1,13 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 from collections import Counter
-input = lambda: sys.stdin.readline().strip()
 
 def solve():
     mod = 676767677
     inf = 10**9
-    n, m = map(int, input().split())
-    a = list(map(int , input().split()))
+    n, m = II(), II()
+    a = [II() for _ in range(n)]
     mp = Counter(a)
     pre = [0] * (m + 5)
     for i in range(1, m + 1):
@@ -26,5 +27,5 @@ def solve():
             ans = (ans * pre[a[i]]) % mod
     print(ans)
     
-for _ in range(int(input())):
+for _ in range(II()):
     solve()

@@ -1,8 +1,9 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 
 def main():
-    n = int(input())
+    n = II()
     a = 1
     b = n + 1
     for i in range(1, 3 * n + 1):
@@ -15,5 +16,5 @@ def main():
     print('')
 
 
-for _ in range(int(input())):
+for _ in range(II()):
     main()

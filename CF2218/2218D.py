@@ -1,9 +1,10 @@
 from math import gcd
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 
 def main():
-    n = int(input())
+    n = II()
     a = [1] * (n + 1)
     p, k = 1, n + 1
     while p <= n:
@@ -20,5 +21,5 @@ def main():
         ans.append(a[i] * a[i + 1])
     print(*ans)
 
-for _ in range(int(input())):
+for _ in range(II()):
     main()

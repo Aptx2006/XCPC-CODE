@@ -9,7 +9,8 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys, heapq, bisect
-input = lambda: sys.stdin.readline()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
     S = []
     k = 0
@@ -30,7 +31,7 @@ def main():
             heapq.heappush(a, x)
             st.add(x)
     
-    n = int(input())
+    n = II()
     ans = 0
     for _ in range(n):
         cur = heapq.heappop(a)

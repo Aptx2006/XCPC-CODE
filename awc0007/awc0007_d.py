@@ -1,13 +1,14 @@
 import sys
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 import math
 from collections import defaultdict, deque
-input = lambda: sys.stdin.readline()
 MOD = 998244353
 def main():
-	n, a, b = map(int, input().split())
+	n, a, b = II(), II(), II()
 	diff = list([0] * (n + 5) for i in range(n + 5))
 	for _ in range(a):
-		r1, c1, r2, c2 = map(int, input().split())
+		r1, c1, r2, c2 = II(), II(), II(), II()
 		diff[r1][c1] += 1
 		diff[r1][c2 + 1] -= 1
 		diff[r2 + 1][c1] -= 1
@@ -20,7 +21,7 @@ def main():
 			diff[r][c] += diff[r - 1][c]
 	diffB = list([0] * (n + 5) for i in range(n + 5))
 	for _ in range(b):
-		r1, c1, r2, c2 = map(int, input().split())
+		r1, c1, r2, c2 = II(), II(), II(), II()
 		diffB[r1][c1] += 1
 		diffB[r1][c2 + 1] -= 1
 		diffB[r2 + 1][c1] -= 1

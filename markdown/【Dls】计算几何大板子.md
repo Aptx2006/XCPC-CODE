@@ -294,4 +294,3 @@ Points halfplane_intersection(vector<Line> L, const T inf = 1e9) {
 using namespace Geometry;
  
 ```
-

@@ -7,9 +7,10 @@
 # Powered by CP Editor (https://cpeditor.org)
 
 import sys, math
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	d = int(input())
+	d = II()
 	r = d / 2
 	print(math.pi * r * r)      
 main()

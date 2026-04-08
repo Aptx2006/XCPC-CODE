@@ -1,7 +1,8 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+it = map(int, sys.stdin.buffer.read().split())
+II = lambda: next(it)
 def main():
-	n, k = map(int, input().split())
+	n, k = II(), II()
 	for b in range(33):
 		H = 1 << b
 		mn, mx = n // H, (n - 1 + H) // H
@@ -11,5 +12,5 @@ def main():
 	
 	print(-1)
 
-for _ in range(int(input())):
+for _ in range(II()):
 	main()
