@@ -17,7 +17,7 @@ jobs:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         run: |
           set -e
-          AUTH="https://${GITEE_USERNAME}:${GITEE_TOKEN}@gitee.com/gitee.com/Aptx2006.git"
+          AUTH="https://${GITEE_USERNAME}:${GITEE_TOKEN}@gitee.com/Aptx2006/XCPC-CODE.git"
           git remote remove gitee || true
           git remote add gitee "$AUTH"
           # 推送所有分支并清理已删除的远程分支
