@@ -1,7 +1,8 @@
 import sys
 input = lambda: sys.stdin.readline().strip()
 
-#这次推送没有具体更新，仅用于测试gitee的同步功能是否正常
+# test github -> gitee
+# 这次推送没有具体更新，仅用于测试gitee的同步功能是否正常
 
 def change(a, b, l):
     return b, l - 1 - a
