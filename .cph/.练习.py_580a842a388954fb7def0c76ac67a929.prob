@@ -1,1 +1,0 @@
-{"name":"Local: 练习","url":"d:\\CODE\\gitcode\\练习.py","tests":[{"id":1775646637388,"input":"5 6\n1 1 2 1\n1 2 3 1\n1 3 4 1\n1 4 1 1\n2 2 5 10\n2 2 5 5","output":"9"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\练习.py","group":"local","local":true}
