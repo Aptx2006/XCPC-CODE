@@ -12,13 +12,12 @@ void solve() {
     vector<int> a(n), b(n), d(n);
     for(int i = 0; i < n; i++) cin >> a[i];
     for(int i = 0; i < n; i++) cin >> b[i], d[i] = b[i] - a[i];
-    ans = count(d
-        .begin(), d.end(), 0);
+    ans = count(d.begin(), d.end(), 0);
     int add = 0;
     for(int L = 0; L < n; L++) {
         unordered_map<int, int> mp;
         cnt = 0;
-        for(int R = L; R < n; R++) {
+        for(int R = 0; R < n; R++) {
             if(d[R] == 0) cnt++;
             else{
                 mp[d[R]]++;
@@ -26,7 +25,7 @@ void solve() {
             }
         }
     }
-    cout << ans + add << '\n';
+    cout << ans + add <<'\n';
 }
 
 signed main() {
