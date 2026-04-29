@@ -2,31 +2,68 @@
 using namespace std;
 using i64 = long long;
 
-int fa[1010], n, m, k = 1;
-int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
+const int MAXN = 2e6 + 10; 
+vector<int> G[MAXN];      
+int dp[MAXN];             
 
 void solve() {
+    i64 n;  
+    int m;
     cin >> n >> m;
-    vector<array<int, 3>> e(m);
-    for (auto& x : e) cin >> x[0] >> x[1] >> x[2];
-    sort(e.begin(), e.end(), [](auto& a, auto& b) { return a[2] < b[2]; });
-    for (int i = 1; i <= n; i++) fa[i] = i;
-    i64 ans = 0, need = n - k;
-    for(auto& x : e) {
-        int u = find(x[0]), v = find(x[1]);
-        if (u == v) continue;
-        fa[u] = v;
-        ans += x[2];
-        if(--need == 0) {
-            cout << ans << '\n';
-            return;
+    memset(dp, -1, sizeof(dp)); 
+    vector<i64> a;     
+    vector<pair<i64, i64>> edges; 
+    a.push_back(1);
+    a.push_back(n + 1);
+    for (int i = 0; i < m; ++i) {
+        i64 l, r; 
+        cin >> l >> r;
+        edges.emplace_back(l, r + 1);
+        a.push_back(l);
+        a.push_back(r + 1);
+    }
+
+    sort(a.begin(), a.end());
+    a.erase(unique(a.begin(), a.end()), a.end());
+
+    auto rank = [&](i64 x) {
+        return lower_bound(a.begin(), a.end(), x) - a.begin() + 1; 
+    };
+
+    for (auto& e : edges) {
+        int u = rank(e.first);
+        int v = rank(e.second);
+        G[u].push_back(v);
+        G[v].push_back(u);
+    }
+
+    queue<int> q;
+    int st = rank(1);    
+    int ed = rank(n + 1);
+    q.push(st);
+    dp[st] = 0;  
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int v : G[u]) {
+            if (dp[v] == -1) {
+                dp[v] = dp[u] + 1;
+                q.push(v);
+                if (v == ed) {  
+                    cout << dp[v] << '\n';
+                    return;
+                }
+            }
         }
     }
-    cout << (need == 0 ? to_string(ans) : "no spanning tree") << '\n';
+
+    cout << -1 << '\n';
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     solve();
+    return 0;
 }
