@@ -1,64 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 using i64 = long long;
+using pii = pair<int, int>;
 
-const int MAXN = 2e6 + 10; 
-vector<int> G[MAXN];      
-int dp[MAXN];             
+const int INF = 1e9;
+int n, m, k;            
 
 void solve() {
-    i64 n;  
-    int m;
     cin >> n >> m;
-    memset(dp, -1, sizeof(dp)); 
-    vector<i64> a;     
-    vector<pair<i64, i64>> edges; 
-    a.push_back(1);
-    a.push_back(n + 1);
-    for (int i = 0; i < m; ++i) {
-        i64 l, r; 
-        cin >> l >> r;
-        edges.emplace_back(l, r + 1);
-        a.push_back(l);
-        a.push_back(r + 1);
+    vector<vector<pii>> g(n);
+    for(int i = 0; i < m; i++) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        g[u].push_back({v, w});
     }
-
-    sort(a.begin(), a.end());
-    a.erase(unique(a.begin(), a.end()), a.end());
-
-    auto rank = [&](i64 x) {
-        return lower_bound(a.begin(), a.end(), x) - a.begin() + 1; 
-    };
-
-    for (auto& e : edges) {
-        int u = rank(e.first);
-        int v = rank(e.second);
-        G[u].push_back(v);
-        G[v].push_back(u);
-    }
-
-    queue<int> q;
-    int st = rank(1);    
-    int ed = rank(n + 1);
-    q.push(st);
-    dp[st] = 0;  
-
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        for (int v : G[u]) {
-            if (dp[v] == -1) {
-                dp[v] = dp[u] + 1;
-                q.push(v);
-                if (v == ed) {  
-                    cout << dp[v] << '\n';
-                    return;
-                }
-            }
+    vector<i64> dp(n, INF);
+    dp[n - 1] = 0;
+    for(int i = n - 2; i >= 0; i--) {
+        for(auto &[v, w]: g[i]) {
+            dp[i] = min(dp[i], dp[v] + w);
         }
     }
-
-    cout << -1 << '\n';
+    cout << dp[0] << '\n';
 }
 
 int main() {
