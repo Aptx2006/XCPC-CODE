@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"name":"Local: 训练","url":"d:\\CODE\\gitcode\\训练.cpp","tests":[{"id":1776001839268,"input":"100000 2 11\n1 2024000002 1 WA 50\n1 2024000002 1 AC 51\n1 2024000001 1 AC 120\n1 2024000001 2 AC 165\n2 1\n2 2\n1 2024000002 2 AC 166\n2 1\n2 2\n2 3\n2 100000","output":""},{"id":1776001853546,"input":"5\n1 2 3 2 1","output":""},{"id":1776001868235,"input":"6\n6 5 4 3 2 1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\训练.cpp","group":"local","local":true}
+=======
+{"name":"Local: 训练","url":"d:\\CODE\\gitcode\\训练.cpp","tests":[{"id":1778118854592,"input":"4 4\n0 1 5\n0 2 1\n1 3 3\n2 3 10","output":"8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\训练.cpp","group":"local","local":true}
+>>>>>>> 979334818d779a782710f1da9b1a801c88aab226
