@@ -4,7 +4,6 @@ using namespace std;
 using i64 = long long;
 using pii = pair<int, int>;
 
-<<<<<<< HEAD
 const i64 MOD = 998244353;
 
 int n;
@@ -53,7 +52,6 @@ int main() {
 	solve();
 	return 0;
 }
-=======
 const int INF = 1e9;
 int n, m, k;            
 
@@ -81,4 +79,3 @@ int main() {
     solve();
     return 0;
 }
->>>>>>> 979334818d779a782710f1da9b1a801c88aab226
