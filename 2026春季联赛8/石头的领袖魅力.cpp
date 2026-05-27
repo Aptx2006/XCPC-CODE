@@ -1,18 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-using i32 = int;
 using i64 = long long;
-using i128 = __int128;
 #define all(x) (x).begin(), (x).end()
 #define dbg(x) cerr << #x << " = " << (x) << endl;
 
 int T, n, m, k, ans, cnt;
 
 void solve() {
-    cin >> n;
-    vector<int> a(n);
-    for(auto &x: a) cin >> x;
+    int a, b;
+    cin >> a >> b;
+    if(a > b) swap(a, b);
+	if(a != 1){
+		cout << "1\n";
+	} else if(a * 2 < b) {
+		cout << a * 2 <<'\n';
+	} else {
+		cout << a + b <<'\n';
+    }
 }
 
 int main() {
