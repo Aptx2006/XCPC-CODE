@@ -8,11 +8,11 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m, a = II(), II(), II()
-    ans = (n + a - 1) // a
-    ans *= (m + a - 1) // a
-    out.append(ans)
- 
-main()
+    n, k = II(), II()
+    ans = list(k if (n - 1) & i == i else 0 for i in range(n))
+    out.append(' '.join(map(str, ans)))
+
+for _ in range(II()):
+    main()
 
 print('\n'.join(map(str, out)))
