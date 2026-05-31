@@ -24,7 +24,7 @@ def main():
         elif u[i] == 'E':
             if dp[k] != -1 and dp[k] + 1 <= k * (s - 1):
                 dp[k] = dp[k] + 1
-            elif cnt > 0 and k < x:
+            elif cnt > 0 and k < x: 
                 cnt -= 1
                 dp[k + 1] = fmax(dp[k + 1], dp[k])
                 k += 1
