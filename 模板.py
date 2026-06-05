@@ -1,7 +1,8 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
-# it = map(int, sys.stdin.read().split())
-# II = lambda: next(it)
+it = iter(sys.stdin.read().split())
+SI = lambda: next(it)
+II = lambda: int(SI())
+
 
 fmax = lambda a, b: a if a > b else b
 fmin = lambda a, b: a if a < b else b
