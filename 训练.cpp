@@ -1,44 +1,40 @@
 #include<bits/stdc++.h>
+#define int long long
+
 using namespace std;
 
-using i32 = int;
-using i64 = long long;
-using i128 = __int128;
-#define all(x) (x).begin(), (x).end()
-#define dbg(x) cerr << #x << " = " << (x) << endl;
-
-int T, n, m, k, ans, cnt;
-
-void solve() {
-    cin >> n;
-    vector<int> x(n, -1);
-    vector<bool> col(n), d1(2 * n - 1), d2(2 * n - 1);
-
-    auto dfs = [&](auto && self, int row) -> void {
-        if (row == n) {
-            for (int i = 0; i < n; i++) 
-                cout << x[i] << " \n"[i == n - 1];
-            return;
-        }
-        int l = 0, r = n;
-        if (row == 0) r = n / 2;
-        for (int c = l; c < r; c++) {
-            int d = row - c + n - 1;
-            int e = row + c;
-            if (col[c] or d1[d] or d2[e]) continue;
-            x[row] = c;
-            col[c] = d1[d] = d2[e] = true;
-            self(self, row + 1);
-            col[c] = d1[d] = d2[e] = false;
-        }
-    };
-
-    dfs(dfs, 0);
+int gcd(int a,int b){
+	return (b==0)?a:gcd(b,a%b);
 }
+int fun(int x){
+	for(int i=2;i*i<=x;i++){
+		if(x%i==0){
+            x=x/i;
+            if(x==2) return 2;
+            else return x;
+        }
+	}
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    for(T = 1; T--; solve());
-    return 0;
+	if(x==2||x==3) return 1; 
+	if(x==1) return -1;
+	return 1;
+}
+void solve(){
+	int x,y;
+	cin>>x>>y;
+	
+	cout<<fun(gcd(x,y));
+	
+	
+	
+} 
+
+
+
+
+signed main(){
+	ios::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+	solve();
+	return 0;
 }
