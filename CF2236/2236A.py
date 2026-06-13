@@ -10,6 +10,8 @@ out = []
 
 def main():
     n = II()
+    a = [II() for _ in range(n)]
+    out.append(max(a) + 1 - min(a))
 
 for _ in range(II()):
     main()

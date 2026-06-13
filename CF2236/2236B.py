@@ -9,7 +9,17 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n = II()
+    n, k = II(), II()
+    s = SI()
+    isok = [0] * k
+    for i, c in enumerate(s):
+        if c == '1':
+            isok[i % k] ^= 1
+            
+    if any(isok):
+        out.append("NO")
+    else:
+        out.append("YES")
 
 for _ in range(II()):
     main()
