@@ -1,0 +1,1 @@
+{"name":"Local: B","url":"d:\\CODE\\gitcode\\abc461\\B.py","tests":[{"id":1781352292109,"input":"4\n1 2\n1 3\n1 2\n3 1 2 3\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\abc461\\B.py","group":"local","local":true}

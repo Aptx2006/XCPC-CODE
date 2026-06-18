@@ -1,0 +1,1 @@
+{"name":"Local: E","url":"d:\\CODE\\gitcode\\abc461\\E.py","tests":[{"id":1781354189210,"input":"5\n1 2 -1 2\n8 5 0 0\n7 13 9 4\n1 1 0 100\n31 9 -74 -60\n","output":"4\n0\n103\n100\n1332\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\abc461\\E.py","group":"local","local":true}
