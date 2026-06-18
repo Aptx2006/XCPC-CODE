@@ -1,0 +1,1 @@
+{"name":"Local: I","url":"d:\\CODE\\gitcode\\23-CC-GL\\I.cpp","tests":[{"id":1781492140802,"input":"2\n5 4\n1 2 2 3 4\n5 10000\n5 2 3 4 1\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\23-CC-GL\\I.cpp","group":"local","local":true}

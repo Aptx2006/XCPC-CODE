@@ -1,33 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define int long long
-const int N = 3e5+5,MOD = 1e9 + 7;
-int n,m,ans;
-void solve(){
-    string s;
+
+using i32 = int;
+using i64 = long long;
+using i128 = __int128;
+#define all(x) (x).begin(), (x).end()
+#define dbg(x) cerr << #x << " = " << (x) << endl;
+
+int T, n, m, k, ans, cnt;
+
+void solve() {
+    string s, ans;
     cin >> s;
-    n=s.size();
-    int ct1=0,ct2=0;
-    string ans;
-    for(int i=0;i<n;i++){
-        if(s[i]=='(')ct1++;
-        else if(ct2<ct1){
-            ct2++;
-        }else{
-            string x(ct1,'(');
-            ct1=ct2=0;
-            ans += x;
-            ans += '(';
+    int ct1 = 0, ct2 = 0;
+    for(int i = 0; i < (int)s.size(); i++) {
+        if(s[i] == '(') {
+            ct1 += 1;
+        }else {
+            ct2 = min(ct2 + 1, ct1);
         }
     }
-    if(ct1==ct2)
-    cout<<s<<'\n';
-    else cout<<"impossible\n";
+    if(ct1 == ct2) {
+        cout << s << '\n';
+    }else {
+        cout << "impossible\n";
+    }
 }
-signed main(){
+
+int main() {
     ios::sync_with_stdio(false);
-    cin.tie(0),cout.tie(0);
-    int times = 1;cin >> times;
-    while(times--) solve();
+    cin.tie(nullptr);
+    for(cin >> T; T--; solve());
     return 0;
 }
