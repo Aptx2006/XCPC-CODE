@@ -1,64 +1,50 @@
 #include<bits/stdc++.h>
 using namespace std;
-//#define int long long
-#define debug(x) cout<<#x<<'='<<x<<' ';
-const int N = 3e5+5,MOD = 1e9 + 7;
-int n,m,ans;
-void solve(){
+
+using i32 = int;
+using i64 = long long;
+using i128 = __int128;
+#define all(x) (x).begin(), (x).end()
+#define dbg(x) cerr << #x << " = " << (x) << endl;
+
+int T, n, m, k, ans, cnt;
+
+void solve() {
     cin >> n;
-    vector<pair<int,int>>pos(n+1);
-    unordered_set<int>mp;
-    int mx = 0,u,v;
-    for(int i=1;i<=n;i++){
-        cin >> u >> v;
-        mp.insert(u),mp.insert(v);
-        pos[i] = {u,v};
-        mx = max({u,v,mx});
-    }
-    auto isok = [&](int mid){
-        int mx = 0,cnt = 0;
-        for(auto [x,y]:pos) if(x>=mid) cnt++;
-        vector<int>val(n+1,0),pv(n+1,0);
-        for(int i=1;i<=n;i++){
-            auto [x,y] = pos[i];
-            if(x>=mid){
-                if(y<mid) val[i] = -1;
-            }else{
-                if(y>=mid) val[i] = 1;
-            }
+    vector<int> a(n), b(n);
+    for(int i = 0; i < n; i++) cin >> a[i] >> b[i];
+    vector<int> aa = a;
+    sort(all(aa));
+    int l = aa[n / 2], r = max(*max_element(all(a)), *max_element(all(b)));
+    ans = l;
+
+    auto isok = [&](int x) {
+        vector<int> ck(n), dp(n + 1);
+        int cur = 0;
+        for(int i = 0; i < n; i++) {
+            cur += int(a[i] >= x);
+            ck[i] = int(b[i] >= x) - int(a[i] >= x);
+            if(dp[i] > 0) dp[i + 1] = dp[i] + ck[i];
+            else dp[i + 1] = ck[i];
         }
-        for(int i=1;i<=n;i++) pv[i] = pv[i-1] + val[i];
-        vector<int>rmx(n+1);//右端前缀和最大值
-        rmx[n] = pv[n];
-        //debug(cnt) cout<<endl;
-        for(int i=n;i>1;i--) rmx[i-1] = max(rmx[i],pv[i-1]);
-        // for(int i=1;i<=n;i++) debug(val[i]) cout<<endl;
-        // for(int i=1;i<=n;i++) debug(pv[i]) cout<<endl;
-        // for(int i=1;i<=n;i++) debug(rmx[i]) cout<<endl;
-        int tmp = cnt;
-        for(int i=1;i<=n;i++){
-            tmp = max(tmp,cnt+rmx[i]-pv[i-1]);
-            //if(tmp>=(n-1)/2 and !mp.count(mid)) return true;
-            if(tmp>=(n+1)/2) return true;
-        }
-        return false;
+        return *max_element(all(dp)) + cur >= (n + 1) / 2;
     };
-    int l = 0, r = mx;
-    ans = 0;
-    //debug(mx)
-    while(l<=r){
-        int mid = (l+r)>>1;
-        //cout<<"mid="<<mid<<endl;
-        if(isok(mid)){
-            l=mid+1,ans = max(ans,mid);
-        }else r =mid-1;
+
+    while(l <= r) {
+        int mid = (l + r) / 2;
+        if(isok(mid)) {
+            l = mid + 1;
+            ans = mid;
+        }else {
+            r = mid - 1;
+        }
     }
-    cout<<ans<<"\n";
+    cout << ans << '\n';
 }
-signed main(){
+
+int main() {
     ios::sync_with_stdio(false);
-    cin.tie(0),cout.tie(0);
-    int times = 1;//cin >> times;
-    while(times--) solve();
+    cin.tie(nullptr);
+    for(T = 1 ; T--; solve());
     return 0;
 }

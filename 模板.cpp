@@ -7,7 +7,7 @@ using i128 = __int128;
 #define all(x) (x).begin(), (x).end()
 #define dbg(x) cerr << #x << " = " << (x) << endl;
 
-int T, n, m, k, ans, cnt;
+int T = 1, n, m, k, ans, cnt;
 
 void solve() {
     cin >> n;

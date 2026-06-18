@@ -1,40 +1,37 @@
 #include<bits/stdc++.h>
 using namespace std;
-//#define int long long
-const int N = 3e5+5,MOD = 1e9 + 7;
-int n,m,ans;
-vector<int>mergee(vector<int>a,vector<int>b){
-    int m=a.size();
-    vector<int>ans(m,0);
-    for(int i=0;i<m;i++){
-        ans[i]=a[b[i]-1];
-    }
-    return ans;
-}
-void solve(){
+
+using i32 = int;
+using i64 = long long;
+using i128 = __int128;
+#define all(x) (x).begin(), (x).end()
+#define dbg(x) cerr << #x << " = " << (x) << endl;
+
+int T, n, m, k, ans, cnt;
+
+void solve() {
     cin >> n >> m;
-    vector a(m,vector<int>(n));
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++){
-            cin >> a[i][j];
+    set<vector<int>> st, tst;
+    vector<int> a(n), b(n);
+    auto add = [&](vector<int> x) {
+        for(int i = 0; i < n; i++) {
+            b[i] = x[a[i] - 1];
         }
+        tst.insert(b);
+    };
+    for(int i = 0; i < m; i++) {
+        for(auto &x: a) cin >> x;
+        tst = st;
+        for(auto &x: st) add(x);
+        st = tst;
+        st.insert(a);
     }
-    set<vector<int>>mp;
-    for(int i=0;i<m;i++){
-        set<vector<int>>temp;
-        for(auto x:mp){
-            auto newone=mergee(x,a[i]);
-            temp.insert(newone);
-        }
-        for(auto x:temp)mp.insert(x);
-        mp.insert(a[i]);
-    }
-    cout<<mp.size();
+    cout << st.size() << '\n';
 }
-signed main(){
+
+int main() {
     ios::sync_with_stdio(false);
-    cin.tie(0),cout.tie(0);
-    int times = 1;//cin >> times;
-    while(times--) solve();
+    cin.tie(nullptr);
+    for(T = 1 ; T--; solve());
     return 0;
 }
