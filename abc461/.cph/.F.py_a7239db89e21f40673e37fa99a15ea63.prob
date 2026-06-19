@@ -1,1 +1,0 @@
-{"name":"Local: F","url":"d:\\CODE\\gitcode\\abc461\\F.py","tests":[{"id":1781356448188,"input":"5\nATCABC\n1\nABABC\n1\nXABCYZ\n1\nZZZZZ\n1\nABCBABCAEFCABAABC\n2\n","output":"1\n-1\n6\n3\n3\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\abc461\\F.py","group":"local","local":true}
