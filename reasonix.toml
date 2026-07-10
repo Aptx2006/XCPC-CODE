@@ -1,0 +1,2 @@
+[permissions]
+allow = ["Bash(cd /d/code/gitcode && python -X utf8 \"C:/Users/Aptx4869/AppData/Roaming/reasonix/skills/deepseek-observe/scripts/analyze.py\" --image_path \".reasonix/attachments/clipboard-20260627-224344.277609-000001.png\")"]
