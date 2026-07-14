@@ -10,12 +10,10 @@ out = []
 
 def main():
     n, m = II(), II()
-    ans = 0
-    while n <= m:
-        n *= 3
-        m *= 2
-        ans += 1
-    out.append(ans)
+    if n * 9 == m * 16:
+        out.append('Yes')
+    else:
+        out.append('No')
 
 main()
 

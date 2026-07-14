@@ -9,14 +9,14 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
-    ans = 0
-    while n <= m:
-        n *= 3
-        m *= 2
-        ans += 1
-    out.append(ans)
+    n = II()
+    a = [0] + sorted([II() for i in range(n)])
+    if max(a) > 2 or a[-1] + a[-2] >= 4:
+        out.append('Yes')
+    else:
+        out.append('No')
 
-main()
+for _ in range(II()):
+    main()
 
 print('\n'.join(map(str, out)))
