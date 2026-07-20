@@ -9,14 +9,19 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
+    n, k = II(), II()
+    s = SI()
+    if k > n // 2:
+        out.append(-1)
+        return
     ans = 0
-    while n <= m:
-        n *= 3
-        m *= 2
-        ans += 1
+    for x in s[:k]:
+        ans += int(x == 'L')
+    for x in s[-k:]:
+        ans += int(x == 'R')
     out.append(ans)
 
-main()
+for _ in range(II()):
+    main()
 
 print('\n'.join(map(str, out)))

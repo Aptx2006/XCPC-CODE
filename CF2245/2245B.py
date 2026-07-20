@@ -9,14 +9,15 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
-    ans = 0
-    while n <= m:
-        n *= 3
-        m *= 2
-        ans += 1
+    n, c = II(), II()
+    a = list(II() for _ in range(n))
+    ans = sum(a) - n * c
+    b = list(c - x for x in a if x < c)
+    b.sort(reverse=True)
+    ans += sum(b[:n // 2])
     out.append(ans)
-
-main()
+    
+for _ in range(II()):
+    main()
 
 print('\n'.join(map(str, out)))

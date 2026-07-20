@@ -9,13 +9,14 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
-    ans = 0
-    while n <= m:
-        n *= 3
-        m *= 2
-        ans += 1
-    out.append(ans)
+    n, x = II(), SI()
+    G = [SI() for i in range(n)]
+    j = ord(x) - ord('A')
+    for i in range(n):
+        if G[i][j] == 'o':
+            out.append('Yes')
+            return
+    out.append('No')
 
 main()
 

@@ -10,12 +10,12 @@ out = []
 
 def main():
     n, m = II(), II()
-    ans = 0
-    while n <= m:
-        n *= 3
-        m *= 2
-        ans += 1
-    out.append(ans)
+    m = m * 10000
+    bmi = (m / n) / n
+    if bmi >= 25:
+        out.append('Yes')
+    else:
+        out.append('No')
 
 main()
 

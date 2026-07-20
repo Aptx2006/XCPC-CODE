@@ -113,5 +113,7 @@
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "D:/CODE/XCPC/DS",
-    "python.REPL.enableREPLSmartSend": false
+    "python.REPL.enableREPLSmartSend": false,
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python-envs.pythonProjects": []
 }

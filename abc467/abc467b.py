@@ -9,12 +9,13 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
+    n = II()
     ans = 0
-    while n <= m:
-        n *= 3
-        m *= 2
-        ans += 1
+    for i in range(n):
+        x, y = II(), II()
+        s = SI()
+        if s == 'keep':
+            ans += y - x
     out.append(ans)
 
 main()
