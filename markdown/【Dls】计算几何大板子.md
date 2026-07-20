@@ -200,7 +200,7 @@ Points convex_hull(Points p) {
     ch.resize(k - 1);
     return ch;
 }
- 
+
 // 面積の 2 倍
 T area2(const Points &p) {
     T res = 0;
