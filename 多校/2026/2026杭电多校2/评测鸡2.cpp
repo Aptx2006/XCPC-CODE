@@ -30,8 +30,8 @@ void solve() {
     int p = 1;
     while(p <= m or !pq.empty()) {
         i64 time = 2e18;
-        if (p <= m) time = min(time, b[p]);
-        if (!pq.empty()) time = min(time, pq.top().first);
+        if(p <= m) time = min(time, b[p]);
+        if(!pq.empty()) time = min(time, pq.top().first);
 
         while(!pq.empty() and pq.top().first == time) {
             auto [_, id] = pq.top(); 
@@ -46,7 +46,7 @@ void solve() {
 
         while(p <= m and b[p] == time) {
             int u = a[p];
-            if (q[u].empty() and !busy[u]) {
+            if(q[u].empty() and !busy[u]) {
                 st.insert(p);
             }
             q[u].push(p);
