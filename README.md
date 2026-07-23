@@ -1,6 +1,7 @@
 # APTX2006 の 仓库
 
 本仓库用于存放我在平时学习算法竞赛、备战 XCPC 等比赛过程中的代码。
+训练日志：https://docs.qq.com/sheet/DZnpzUkFtd3hCT3p0?tab=ycc26r
 
 ## To
 - 正在准备算法竞赛（如 XCPC、OI、蓝桥杯 等）的同学
