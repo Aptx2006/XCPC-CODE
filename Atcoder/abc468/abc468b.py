@@ -9,7 +9,16 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
+    m, d = II(), II()
+    s = list(SI())
+    id = []
+    for i in range(m):
+        if s[i] == 'G':
+            id.append(i)
+    for i in id:
+        for j in range(max(0, i - d), min(m, i + d + 1)):
+            s[j] = 'G'
+    out.append(s.count('.'))
 
 main()
 

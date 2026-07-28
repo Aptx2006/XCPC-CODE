@@ -10,7 +10,17 @@ out = []
 
 def main():
     n, m = II(), II()
-
+    l = 1
+    ans = 0
+    while l <= m:
+        if l > n:   
+            break
+        val = n // l
+        r = min(n // val, m)
+        ans += val* (r - l + 1)
+        l = r + 1
+    out.append(ans)
+    
 main()
 
 print('\n'.join(map(str, out)))
