@@ -9,7 +9,9 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
+    n = II()
+    a = list(II() for i in range(n))
+    out.append(sum(a[i] < a[i + 1] > a[i + 2] for i in range(n - 2)))
 
 main()
 
