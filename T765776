@@ -9,7 +9,19 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n = II()
+    s = SI()
+    ans = ''
+    n = len(s)
+    for i in range(n):
+        if i & 1:
+            a = s[i:]
+            ans += a[::-1]
+        else:
+            a = s[:(n - i)]
+            ans += a
+
+    out.append(ans)
+
 
 main()
 
