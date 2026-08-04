@@ -9,7 +9,8 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n, m = II(), II()
+    n = 1e18
+    print(int(n))
 
 main()
 
