@@ -1,75 +1,62 @@
-#include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
 using namespace std;
-using namespace __gnu_pbds;
 
+using i32 = int;
 using i64 = long long;
+using i128 = __int128;
+#define all(x) (x).begin(), (x).end()
+#define dbg(x) cerr << #x << " = " << (x) << endl;
 
-typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> pb_set;
+int T = 1, n, m, k, ans, cnt;
+const i64 mod = 998244353;
+
+i64 qpow(i64 base, i64 mi, i64 res = 1) {
+    while(mi) {
+        if(mi & 1) {
+            res = res * base % mod;
+        }
+        mi >>= 1;
+        base = base * base % mod;
+    }
+    return res;
+}
+
+#include <vector>
+#include <algorithm>
 
 void solve() {
-    int n, m, k;
-    cin >> n >> m >> k;
-    vector<int> a(m + 1);
-    vector<i64> b(m + 1), c(m + 1), ans(m + 1);
-    for (int i = 1; i <= m; ++i) {
-        cin >> a[i] >> b[i] >> c[i];
+    cin >> n;
+    vector<i64> b(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> b[i];
     }
 
-    vector<queue<int>> q(n + 1);
-    vector<bool> busy(n + 1, false);
-    pb_set available; 
-    priority_queue<pair<i64, int>, vector<pair<i64, int>>, greater<pair<i64, int>>> pq;
+    const i64 INF = 2e18; // 足够大的无穷大值（注意不要溢出 long long）
+    const int MAX_LEN = 62;
+    vector<i64> dp(MAX_LEN + 1, INF);
+    dp[0] = 0;
 
-    int ptr = 1;
-    while (ptr <= m || !pq.empty()) {
-        i64 t = 2e18;
-        if (ptr <= m) t = min(t, b[ptr]);
-        if (!pq.empty()) t = min(t, pq.top().first);
-
-        while (!pq.empty() && pq.top().first == t) {
-            auto [_, idx] = pq.top(); pq.pop();
-            int u = a[idx];
-            k++;
-            busy[u] = false;
-            if (!q[u].empty()) {
-                available.insert(q[u].front());
+    for (int i = 0; i < n; ++i) {
+        for (int j = MAX_LEN; j >= 1; --j) {
+            if (b[i] >= dp[j - 1]) {
+                dp[j] = min(dp[j], dp[j - 1] + b[i]);
             }
         }
-
-        while (ptr <= m && b[ptr] == t) {
-            int u = a[ptr];
-            if (q[u].empty() && !busy[u]) {
-                available.insert(ptr);
-            }
-            q[u].push(ptr);
-            ptr++;
-        }
-
-        while (k > 0 && !available.empty()) {
-            int idx = *available.begin(); 
-            available.erase(available.begin()); 
-            int u = a[idx];
-            q[u].pop();
-            k--;
-            busy[u] = true;
-            ans[idx] = t;
-            pq.push({t + c[idx], idx});
-        }
     }
 
-    for (int i = 1; i <= m; ++i) {
-        cout << ans[i] << (i == m ? "" : " ");
+    // 寻找最大长度
+    int ans = 0;
+    for (int j = MAX_LEN; j >= 0; --j) {
+        if (dp[j] < INF) {
+            ans = j;
+            break;
+        }
     }
-    cout << "\n";
+    cout << ans << "\n";
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int T;
-    for (cin >> T; T--; ) solve();
+    for(cin >> T; T--; solve());
     return 0;
 }
