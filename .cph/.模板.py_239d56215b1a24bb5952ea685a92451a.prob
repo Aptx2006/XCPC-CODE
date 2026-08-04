@@ -1,1 +1,0 @@
-{"name":"Local: 模板","url":"d:\\CODE\\gitcode\\模板.py","tests":[{"id":1785566840851,"input":"abcde","output":"abcdeedcbabceda"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\模板.py","group":"local","local":true}
