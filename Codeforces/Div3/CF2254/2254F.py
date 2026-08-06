@@ -19,8 +19,8 @@ def main():
     for v in b: 
         sb ^= v
     sx = sa ^ sb
-    c1 = sorted([sx ^ x for x in b] + [sx])
-    c2 = sorted(a + [0])
+    c1 = Counter([sx ^ x for x in b] + [sx])
+    c2 = Counter(a + [0])
     out.append("YES" if c1 == c2 else "NO")
     
 for i in range(II()):
