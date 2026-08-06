@@ -10,9 +10,12 @@ using i128 = __int128;
 int T = 1, n, m, k, ans, cnt;
 
 void solve() {
-    cin >> n;
-    vector<int> a(n);
-    for(auto &x: a) cin >> x;
+    i64 x, y;
+    cin >> x >> y;
+    i64 sum = x + y;
+    i64 b = sum / (y + 1), c = sum % (y + 1);
+    i64 dif = c * (b + 1) * (b + 1) + (y + 1 - c) * b * b;
+    cout << (sum * sum - dif) / 2 << '\n';
 }
 
 int main() {
