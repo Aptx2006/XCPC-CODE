@@ -9,10 +9,14 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n = 1e18
-    for i in range(100):
-        print('100000000 100000000')
+    a, b, c = II(), II(), II()
+    mx = fmax(a, fmax(b, c))
+    mn = fmin(a, fmin(b, c))
+    mid = a + b + c - mx - mn
+    out.append(fmin(mx - mn, mid))
 
-main()
+
+for _ in range(II()):
+    main()
 
 print('\n'.join(map(str, out)))

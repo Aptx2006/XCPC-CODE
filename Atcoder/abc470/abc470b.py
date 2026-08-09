@@ -1,3 +1,4 @@
+from collections import Counter
 import sys
 input = lambda: sys.stdin.readline().strip()
 it = iter(sys.stdin.read().split())
@@ -9,9 +10,13 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n = 1e18
-    for i in range(100):
-        print('100000000 100000000')
+    n = II()
+    a = list(II() for i in range(n))
+    mp = Counter(a)
+    mx = 0
+    for x, v in mp.items():
+        mx = max(mx, v)
+    out.append(n - mx)
 
 main()
 

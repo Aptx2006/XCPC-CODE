@@ -1,3 +1,5 @@
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 using i32 = int;
@@ -20,9 +22,6 @@ i64 qpow(i64 base, i64 mi, i64 res = 1) {
     return res;
 }
 
-#include <vector>
-#include <algorithm>
-
 void solve() {
     cin >> n;
     vector<i64> b(n);
@@ -30,7 +29,7 @@ void solve() {
         cin >> b[i];
     }
 
-    const i64 INF = 2e18; // 足够大的无穷大值（注意不要溢出 long long）
+    const i64 INF = 2e18; 
     const int MAX_LEN = 62;
     vector<i64> dp(MAX_LEN + 1, INF);
     dp[0] = 0;
@@ -43,7 +42,6 @@ void solve() {
         }
     }
 
-    // 寻找最大长度
     int ans = 0;
     for (int j = MAX_LEN; j >= 0; --j) {
         if (dp[j] < INF) {
