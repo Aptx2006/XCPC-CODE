@@ -768,7 +768,7 @@ for (int i = 1; i <= 2 * n; ++i) { // 双倍松弛，获取负环信息
         chk[y] |= (i > n && backup[x] + w < dis[y]);
         dis[y] = min(dis[y], backup[x] + w);
     }
-}
+}1
  
 for (int i = 1; i <= n; ++i) {
     if (i == s) {
