@@ -9,9 +9,8 @@ fmin = lambda a, b: a if a < b else b
 out = []
 
 def main():
-    n = 1e18
-    for i in range(100):
-        print('100000000 100000000')
+    s = SI()
+    print(len(s))
 
 main()
 

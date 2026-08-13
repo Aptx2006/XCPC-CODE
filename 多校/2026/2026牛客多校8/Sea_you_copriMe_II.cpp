@@ -1,166 +1,203 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int maxn=1e3+10;
-vector<int> vis(maxn),prime(maxn);
-int pos;
-int sieve(int n){
-    int i,j,k;
-    k=0;
-    vis[0]=vis[1]=1;
-    for(i=2;i<=n;i++){
-        if(vis[i]==0)
-            prime[k++]=i;
-        for(j=2;i*j<=n;j++)
-            vis[i*j]=1;
+
+const int EMPTY = 0;
+const int ONE_EDGE = 1;
+const int STAR = 2;
+const int TRIANGLE = 3;
+
+const int MAXA = 1000005;
+int spf[MAXA];
+int cnt[MAXA];
+int sum_idx[MAXA];
+
+int state;
+int edge_u, edge_v;
+int center, star_edges;
+int leaf_sum;
+int tri_u, tri_v, tri_w;
+
+void sieve_spf() {
+    for (int i = 2; i < MAXA; i++) spf[i] = i;
+    for (int i = 2; i * i < MAXA; i++) {
+        if (spf[i] == i) {
+            for (int j = i * i; j < MAXA; j += i) {
+                if (spf[j] == j) spf[j] = i;
+            }
+        }
     }
-    return k;
 }
-int gcd(int a,int b){
-    while(b!=0){
-        int t=a%b;
-        a=b;
-        b=t;
+
+int build_terms(int value, int product[], int sign[]) {
+    int primes[8];
+    int prime_count = 0;
+    while (value > 1) {
+        int p = spf[value];
+        primes[prime_count++] = p;
+        while (value % p == 0) value /= p;
     }
-    return a;
+    
+    int terms = 1;
+    product[0] = 1;
+    sign[0] = 1;
+    for (int i = 0; i < prime_count; ++i) {
+        for (int j = 0; j < terms; ++j) {
+            product[terms + j] = product[j] * primes[i];
+            sign[terms + j] = -sign[j];
+        }
+        terms *= 2;
+    }
+    return terms;
 }
-void find(int &now,vector<int>&cnt,int &ccnt){
-        ccnt = 0;
-        int p = 0; 
-        vector<int> nowprime;
-        while(now != 1 && p < pos) { 
-            if(now % prime[p] == 0) {
-                nowprime.push_back(prime[p]);
-            }
-            while(now % prime[p] == 0) {
-                now /= prime[p];
-            }
-            p++;
+
+bool try_add(int pos, const vector<int>& a) {
+    int product[128], sign[128];
+    int terms = build_terms(a[pos], product, sign);
+    
+    int degree = 0;
+    int neighbor_sum = 0;
+    for (int i = 0; i < terms; ++i) {
+        degree += sign[i] * cnt[product[i]];
+        neighbor_sum += sign[i] * sum_idx[product[i]];
+    }
+    
+    if (state == EMPTY) {
+        if (degree == 1) {
+            state = ONE_EDGE;
+            edge_u = pos;
+            edge_v = neighbor_sum;
+        } else if (degree >= 2) {
+            state = STAR;
+            center = pos;
+            star_edges = degree;
+            leaf_sum = neighbor_sum;
         }
-        if(now!=1){
-            nowprime.push_back(now);
-            now=1;
+    } else if (state == ONE_EDGE) {
+        int touch_u = std::gcd(a[pos], a[edge_u]) == 1;
+        int touch_v = std::gcd(a[pos], a[edge_v]) == 1;
+        if (degree != touch_u + touch_v) return false;
+        
+        if (degree == 1) {
+            state = STAR;
+            center = touch_u ? edge_u : edge_v;
+            star_edges = 2;
+            leaf_sum = pos + (touch_u ? edge_v : edge_u);
+        } else if (degree == 2) {
+            state = TRIANGLE;
+            tri_u = edge_u;
+            tri_v = edge_v;
+            tri_w = pos;
         }
-        int l=1<<(nowprime.size());
-        int n=nowprime.size();
-        for(int mask=1;mask<l;mask++){
-          int hh=mask;
-          int shu=__builtin_popcount(mask);
-          int cheng;
-          if(shu&1) cheng=1;
-          else cheng =-1;
-          int prod=1;
-          for(int k=0;k<n;k++){
-            if(mask&(1<<k)){
-                prod*=nowprime[k];
-            }                
-          }
-          ccnt+=cnt[prod]*cheng;
+    } else if (state == STAR) {
+        int touch_center = std::gcd(a[pos], a[center]) == 1;
+        if (degree != touch_center) return false;
+        if (touch_center) {
+            star_edges++;
+            leaf_sum += pos;
         }
+    } else {
+        if (degree != 0) return false;
+    }
+    
+    for (int i = 0; i < terms; ++i) {
+        cnt[product[i]]++;
+        sum_idx[product[i]] += pos;
+    }
+    return true;
 }
-void add(int &now,vector<int> &cnt){
-        int p=1;
-        vector<int> nowprime;
-        while(now!=1||p>pos){
-            if(now%prime[p]==0){
-                nowprime.push_back(prime[p]);
+
+void remove_left(int pos, const vector<int>& a) {
+    if (state == ONE_EDGE) {
+        if (pos == edge_u || pos == edge_v) state = EMPTY;
+    } else if (state == STAR) {
+        if (pos == center) {
+            state = EMPTY;
+        } else if (std::gcd(a[pos], a[center]) == 1) {
+            star_edges--;
+            leaf_sum -= pos;
+            if (star_edges == 1) {
+                state = ONE_EDGE;
+                edge_u = center;
+                edge_v = leaf_sum;
             }
-            while(now%prime[p]==0){
-                now/=prime[p];
-            }
-            p++;
         }
-        if(now!=1){
-            nowprime.push_back(now);
-            now=1;
+    } else if (state == TRIANGLE) {
+        if (pos == tri_u) {
+            state = ONE_EDGE;
+            edge_u = tri_v;
+            edge_v = tri_w;
+        } else if (pos == tri_v) {
+            state = ONE_EDGE;
+            edge_u = tri_u;
+            edge_v = tri_w;
+        } else if (pos == tri_w) {
+            state = ONE_EDGE;
+            edge_u = tri_u;
+            edge_v = tri_v;
         }
-        int l=1<<(nowprime.size());
-        int n=nowprime.size();
-        for(int mask=0;mask<l;mask++){
-          int prod=1;
-          for(int k=0;k<n;k++){
-            if(mask&(1<<k)){
-                prod*nowprime[k];
-            }
-          }
-          cnt[prod]++;
-        }
+    }
+    
+    int product[128], sign[128];
+    int terms = build_terms(a[pos], product, sign);
+    for (int i = 0; i < terms; ++i) {
+        cnt[product[i]]--;
+        sum_idx[product[i]] -= pos;
+    }
 }
-void delet(int &now,vector<int> &cnt){
-    int p=1;
-        vector<int> nowprime;
-        while(now!=1||p>pos){
-            if(now%prime[p]==0){
-                nowprime.push_back(prime[p]);
-            }
-            while(now%prime[p]==0){
-                now/=prime[p];
-            }
-            p++;
-        }
-        if(now!=1){
-            nowprime.push_back(now);
-            now=1;
-        }
-        int l=1<<(nowprime.size());
-        int n=nowprime.size();
-        for(int mask=0;mask<l;mask++){
-          int prod=1;
-          for(int k=0;k<n;k++){
-            if(mask&(1<<k)){
-                prod*nowprime[k];
-            }
-          }
-          cnt[prod]--;
-        }
-}
+
 void solve() {
-    int n,q;
-    cin>>n>>q;
-    vector<int> a(n+2),cnt(n+2),ans(n+2), deg(n+2);
-    for(int i=1;i<=n;i++){
-        cin>>a[i];
+    int n, q;
+    if (!(cin >> n >> q)) return;
+    
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++) cin >> a[i];
+    
+    memset(cnt, 0, sizeof(int) * MAXA);
+    memset(sum_idx, 0, sizeof(int) * MAXA);
+    state = EMPTY;
+    
+    vector<int> farthest(n + 2, 0);
+    int right = 0;
+    for (int left = 1; left <= n; left++) {
+        while (right < n && try_add(right + 1, a)) right++;
+        farthest[left] = right;
+        remove_left(left, a);
     }
-    int i=1;
-    //vector<int> zhishudui(3);
-    vector<pair<int, int>> edges; 
-    int qq=0;
-    // for(int j=1;j<=n;j++){
-    //     int now=a[j];
-    //     int ccnt = 0;
-    //     find(now,cnt,ccnt);
-    //     if(ccnt!=j-i){
-    //         if(zhishudui[0]!=0){
-    //             if(gcd(zhishudui[0],a[j])!=1||qq==1){
-    //                 ans[i]=j;
-    //                 if(gcd(a[i],a[j])!=1){
-    //                     zhishudui[0]=a[j];
-    //                 }
-    //                 int chuqu=a[i];
-    //                 delet(chuqu,cnt);
-    //                 i++;
-    //                 j--;
-    //                 continue;
-    //             }
-    //             if(gcd(zhishudui[0],a[j])==1){
-    //                 qq++;
-    //             }
-    //         }
-    //         else{
-    //             zhishudui[0]=a[j];
-    //         }
-    //     }
-    //     now=a[j];
-    //     add(now,cnt);
-    // }
-
-
+    
+    vector<int> pref(n + 2, 0);
+    for (int i = 1; i <= n; i++) {
+        pref[i] = pref[i - 1] + farthest[i];
+    }
+    
+    vector<int> last_useful(n + 2, 0);
+    int pointer = 0;
+    for (int right_end = 1; right_end <= n; ++right_end) {
+        while (pointer + 1 <= n && farthest[pointer + 1] < right_end) {
+            ++pointer;
+        }
+        last_useful[right_end] = pointer;
+    }
+    
+    for (int i = 0; i < q; i++) {
+        int L, R;
+        cin >> L >> R;
+        int last = last_useful[R];
+        if (last < L) {
+            cout << 0 << "\n";
+        } else {
+            int res = (last - L + 1) * R - (pref[last] - pref[L - 1]);
+            cout << res << "\n";
+        }
+    }
 }
+
 signed main() {
-    signed t_ = 1;
-    cin >> t_;
-    pos=sieve(maxn-5);
-    while (t_--) {
-        solve();
-    }
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    sieve_spf();
+    int t_ = 1;
+    // cin >> t_;
+    while (t_--) solve();
+    return 0;
 }
