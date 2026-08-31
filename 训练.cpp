@@ -1,5 +1,4 @@
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 using i32 = int;
@@ -9,47 +8,38 @@ using i128 = __int128;
 #define dbg(x) cerr << #x << " = " << (x) << endl;
 
 int T = 1, n, m, k, ans, cnt;
-const i64 mod = 998244353;
-
-i64 qpow(i64 base, i64 mi, i64 res = 1) {
-    while(mi) {
-        if(mi & 1) {
-            res = res * base % mod;
-        }
-        mi >>= 1;
-        base = base * base % mod;
-    }
-    return res;
-}
 
 void solve() {
     cin >> n;
-    vector<i64> b(n);
-    for (int i = 0; i < n; ++i) {
-        cin >> b[i];
+    vector<i64> a(n, 1), b(n);
+    for(auto &x: b) cin >> x;
+    map<i64, vector<int>> mp;
+    for(int i = 0; i < n; i++) {
+        mp[b[i]].push_back(i);
     }
-
-    const i64 INF = 2e18; 
-    const int MAX_LEN = 62;
-    vector<i64> dp(MAX_LEN + 1, INF);
-    dp[0] = 0;
-
-    for (int i = 0; i < n; ++i) {
-        for (int j = MAX_LEN; j >= 1; --j) {
-            if (b[i] >= dp[j - 1]) {
-                dp[j] = min(dp[j], dp[j - 1] + b[i]);
-            }
+    sort(all(b));
+    b.erase(unique(all(b)), b.end());
+    i64 lastans = 0;
+    if(b[0] != 0) {
+        cout << "-1\n";
+        return;
+    }
+    for(int i = 1; i < (int)b.size(); i++) {
+        int sz = mp[b[i - 1]].size();
+        i64 cur = b[i] - b[i - 1];
+        i64 ans = cur / sz;
+        if(cur % sz != 0 or ans <= lastans) {
+            cout << "-1\n";
+            return;
         }
-    }
-
-    int ans = 0;
-    for (int j = MAX_LEN; j >= 0; --j) {
-        if (dp[j] < INF) {
-            ans = j;
-            break;
+        for(auto &j: mp[b[i - 1]]) {
+            a[j] = ans;
         }
+        lastans = ans;
     }
-    cout << ans << "\n";
+    for(auto &j: mp[b.back()]) a[j] = lastans + 1;
+    for(auto &x: a) cout << x << ' ';
+    cout << '\n';
 }
 
 int main() {
