@@ -8,6 +8,7 @@ using u64 = unsigned long long;
 #define all(x) (x).begin(), (x).end()
 #define dbg(x) cerr << #x << " = " << (x) << endl;
 
+<<<<<<< HEAD
 int T = 1, n, m, k, cnt;
 i64 ans;
 
@@ -94,6 +95,41 @@ void solve() {
     }
 
     cout << ans << '\n';
+=======
+int T = 1, n, m, k, ans, cnt;
+
+void solve() {
+    cin >> n;
+    vector<i64> a(n, 1), b(n);
+    for(auto &x: b) cin >> x;
+    map<i64, vector<int>> mp;
+    for(int i = 0; i < n; i++) {
+        mp[b[i]].push_back(i);
+    }
+    sort(all(b));
+    b.erase(unique(all(b)), b.end());
+    i64 lastans = 0;
+    if(b[0] != 0) {
+        cout << "-1\n";
+        return;
+    }
+    for(int i = 1; i < (int)b.size(); i++) {
+        int sz = mp[b[i - 1]].size();
+        i64 cur = b[i] - b[i - 1];
+        i64 ans = cur / sz;
+        if(cur % sz != 0 or ans <= lastans) {
+            cout << "-1\n";
+            return;
+        }
+        for(auto &j: mp[b[i - 1]]) {
+            a[j] = ans;
+        }
+        lastans = ans;
+    }
+    for(auto &j: mp[b.back()]) a[j] = lastans + 1;
+    for(auto &x: a) cout << x << ' ';
+    cout << '\n';
+>>>>>>> d5366e4a59a6146306aea65080b93488b1ce3605
 }
 
 int main() {
