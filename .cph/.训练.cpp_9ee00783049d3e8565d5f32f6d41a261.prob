@@ -1,0 +1,1 @@
+{"name":"Local: 训练","url":"d:\\CODE\\gitcode\\训练.cpp","tests":[{"id":1788795146499,"input":"ababa","output":""},{"id":1788795163145,"input":"minecraft","output":""},{"id":1788795165576,"input":"chinesecanfly","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\gitcode\\训练.cpp","group":"local","local":true}
