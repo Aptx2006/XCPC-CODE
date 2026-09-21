@@ -3,12 +3,6 @@ import sys
 
 input = sys.stdin.readline
 
-<<<<<<< HEAD
-n = int(input())
-m = int(input())
-
-need = {}
-=======
 def main():
     n = II()
     b = list(II() for i in range(n))
@@ -38,7 +32,6 @@ def main():
 
 for _ in range(II()):
     main()
->>>>>>> d5366e4a59a6146306aea65080b93488b1ce3605
 
 for _ in range(m):
     s, x = input().split()
