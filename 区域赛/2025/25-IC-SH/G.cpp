@@ -1,11 +1,16 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
 using i64 = long long;
-#define all(A) (A).begin(), (A).end()
-#define dbg(A) cerr << (#A) << "=" << (A) << endl;
 
-int T = 1, n, m;
+#define dbg(A) cout << (#A) << ':' <<  (A) << endl;
+
+const int N = 20;
+int n, m;
+i64 pw3[N];
+
+void init() {
+    
+}
 
 struct LB { // Linear Basis
     using i64 = long long;
@@ -49,51 +54,23 @@ struct LB { // Linear Basis
         }
         return res;
     }
-    i64 ask_min() {
-        if (flag) return 0; // 特判 0
-        for (int i = 0; i <= BASE - 1; i++) {
-            if (d[i]) return d[i];
-        }
-    }
-    void rebuild() { // 第k小值独立预处理
-        for (int i = BASE - 1; i >= 0; i--) {
-            for (int j = i - 1; j >= 0; j--) {
-                if (d[i] & (1ll << j)) d[i] ^= d[j];
-            }
-        }
-        for (int i = 0; i <= BASE - 1; i++) {
-            if (d[i]) p[cnt++] = d[i];
-        }
-    }
-    i64 kthquery(i64 k) { // 查询能被异或得到的第 k 小值, 如不存在则返回 -1
-        if (flag) k--; // 特判 0, 如果不需要 0, 直接删去
-        if (!k) return 0;
-        i64 res = 0;
-        if (k >= (1ll << cnt)) return -1;
-        for (int i = BASE - 1; i >= 0; i--) {
-            if (k & (1LL << i)) res ^= p[i];
-        }
-        return res;
-    }
-    void Merge(const LB &b) { // 合并两个线性基
-        for (int i = BASE - 1; i >= 0; i--) {
-            if (b.d[i]) {
-                insert(b.d[i]);
-            }
-        }
-    }
 };
 
 void solve() {
     cin >> n;
     vector<i64> a(n);
     for(auto &x: a) cin >> x;
-    int cnt = 0, b;
-    for(b = 60; b >= 0; b--) {
+    int cnt = 0, B = 0;
+    for(int b = 60; b >= 0; b--) {
         for(int i = 0; i < n; i++) { 
-            if((a[i] >> b) & 1ll) cnt++;
+            if((a[i] >> b) & 1ll) {
+                cnt++;
+            }
         }
-        if(cnt) break;
+        if(cnt) {
+            B = b;
+            break;
+        }
     }
     i64 ans = 0;
     if(cnt & 1) {
@@ -102,16 +79,15 @@ void solve() {
         return;
     }
     LB lb;
-    for(int k = b; k >= 0; k--) {
+    for(int k = B; k >= 0; k--) {
         cnt = 0;
         for(int i = 0; i < n; i++) {
             if((a[i] >> k) & 1ll) cnt++;
         }
-        if(cnt & 1) {
-            for(int i = 0; i < n; i++) {
-                if((a[i] >> k) & 1ll) {
-                    a[i] ^= 1ll << k;
-                }
+        if(~cnt & 1) continue;
+        for(int i = 0; i < n; i++) {
+            if((a[i] >> k) & 1ll) {
+                a[i] ^= 1ll << k;
             }
         }
     }
@@ -122,6 +98,11 @@ void solve() {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    for(cin >> T; T--; solve());
+    init();
+    int T = 1;
+    cin >> T;
+    while(T--) {
+        solve();
+    }
     return 0;
 }

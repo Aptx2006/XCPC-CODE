@@ -10,9 +10,7 @@ using i128 = __int128;
 int T = 1, n, m, k, ans, cnt;
 
 void solve() {
-    cin >> n;
-    vector<int> a(n);
-    for(auto &x: a) cin >> x;
+    cin >> n >> m;
 }
 
 int main() {
